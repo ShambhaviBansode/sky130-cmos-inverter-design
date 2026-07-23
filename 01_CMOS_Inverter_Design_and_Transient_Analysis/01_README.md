@@ -2,67 +2,78 @@
 
 ## Objective
 
-Design a CMOS inverter using the Sky130 PDK in Xschem and verify its transient behavior using NgSpice.
+Design a CMOS inverter using the Sky130 Open-Source PDK in Xschem and verify its switching behavior through transient simulation using NgSpice.
 
 ---
 
-## Step 1: Creating the Project Workspace
+## Design Flow
 
-A new project directory was created, the Sky130 `xschemrc` configuration file was copied, and Xschem was launched.
+### Step 1: Project Creation
 
-| Project Setup | Launching Xschem |
-|:-------------:|:----------------:|
+A dedicated project directory was created to organize all design files. The Sky130 `xschemrc` configuration file was copied into the project folder to enable access to the Sky130 PDK libraries and simulation models.
+
+| Project Directory | Launching Xschem |
+|:-----------------:|:----------------:|
 | ![](cmos_pt1_ubuntu_code.png) | ![](cmos_pt1_xterm.png) |
 
 ---
 
-## Step 2: CMOS Inverter Schematic Design
+### Step 2: CMOS Inverter Schematic Design
 
-The PMOS and NMOS transistors were selected from the Sky130 device library, and the required lab pins were added to build the CMOS inverter schematic.
+The CMOS inverter was implemented by selecting one PMOS and one NMOS transistor from the Sky130 device library. Appropriate lab pins were added for **VDD**, **GND**, **VIN**, and **VOUT**, and the transistors were interconnected to form the inverter circuit.
 
-### Selecting PMOS and NMOS Devices
+#### Selecting the MOSFET Devices
 
 | PMOS | NMOS |
 |:----:|:----:|
 | ![](cmos_pt1_choosing_pfet.png) | ![](cmos_pt1_choosing_nfet.png) |
 
-### Adding Lab Pins
+#### Adding Lab Pins
 
 <p align="center">
 <img src="cmos_pt1_selecting_labpins.png" width="70%">
 </p>
 
-### Completed Schematic
+#### Completed CMOS Inverter Schematic
 
 <p align="center">
-<img src="cmos_pt1_codeshown.png" width="80%">
+<img src="cmos_pt1_codeshown.png" width="85%">
+</p>
+
+The completed schematic includes:
+
+- PMOS pull-up network
+- NMOS pull-down network
+- Input (VIN)
+- Output (VOUT)
+- Power supply (VDD)
+- Ground (GND)
+
+---
+
+### Step 3: Simulation Configuration
+
+A pulse voltage source was connected to the input of the inverter to generate alternating logic levels. A transient analysis command was added to the schematic to observe the output response over time.
+
+<p align="center">
+<img src="cmos_pt1_choosing_source.png" width="75%">
 </p>
 
 ---
 
-## Step 3: Configuring the Simulation
+### Step 4: Netlist Generation
 
-A pulse voltage source and transient simulation parameters were added to the schematic.
+After verifying the schematic connections, Xschem generated the SPICE netlist required for simulation. The generated netlist contains the circuit connectivity, transistor models, voltage sources, and simulation commands used by NgSpice.
 
 <p align="center">
-<img src="cmos_pt1_choosing_source.png" width="80%">
+<img src="cmos_pt1_nelist.png" width="85%">
 </p>
 
 ---
 
-## Step 4: Generating the Netlist
+### Step 5: Running the Simulation
 
-The CMOS inverter schematic was converted into a SPICE netlist for simulation.
-
-<p align="center">
-<img src="cmos_pt1_nelist.png" width="80%">
-</p>
-
----
-
-## Step 5: Running the Simulation
-
-The generated netlist was executed successfully in NgSpice.
+The generated netlist was simulated using NgSpice. The simulator successfully executed the transient analysis and produced the voltage waveforms for the input and output nodes.
 
 <p align="center">
 <img src="cmost_pt1_ngspice_simulation_window.png" width="80%">
@@ -70,22 +81,23 @@ The generated netlist was executed successfully in NgSpice.
 
 ---
 
-## Step 6: Transient Analysis
+### Step 6: Transient Analysis
 
-The transient response of the CMOS inverter was obtained by plotting the input voltage (**VIN**) and output voltage (**VOUT**).
+The transient response of the CMOS inverter was plotted by displaying **VIN** and **VOUT** on the same graph.
 
 <p align="center">
 <img src="cmos_pt1_plotting vin vout.png" width="90%">
 </p>
 
+The waveform demonstrates the expected operation of the CMOS inverter:
+
+- When **VIN** is LOW (0 V), the PMOS transistor turns ON and the NMOS transistor turns OFF, causing **VOUT** to rise to approximately **1.8 V**.
+- When **VIN** is HIGH (1.8 V), the NMOS transistor turns ON and the PMOS transistor turns OFF, pulling **VOUT** down to **0 V**.
+- The output waveform is the logical complement of the input waveform.
+- A small propagation delay is visible during each transition due to the charging and discharging of the output capacitance.
+
 ---
 
-## Observation
+## Conclusion
 
-The transient simulation confirms the correct operation of the CMOS inverter.
-
-- The output (**VOUT**) is the logical inversion of the input (**VIN**).
-- When **VIN = 0 V**, **VOUT ≈ 1.8 V**.
-- When **VIN = 1.8 V**, **VOUT ≈ 0 V**.
-- A small propagation delay is observed due to the charging and discharging of the output capacitance.
-- The inverter exhibits rail-to-rail output, demonstrating correct CMOS switching behavior.
+This section demonstrates the complete design flow of a CMOS inverter using the Sky130 Open-Source PDK. The inverter schematic was successfully created in Xschem, simulated using NgSpice, and verified through transient analysis. The obtained VIN–VOUT waveform confirms correct inverter functionality and provides the foundation for further analyses such as Voltage Transfer Characteristics (VTC), noise margins, propagation delay, power consumption, and physical layout in the subsequent modules.

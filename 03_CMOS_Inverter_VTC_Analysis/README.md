@@ -1,4 +1,4 @@
-# 03 – CMOS Inverter Symbol Creation and Voltage Transfer Characteristics (VTC) Analysis
+# 03 – 03_CMOS_Inverter_VTC_Analysi
 
 ## Objective
 

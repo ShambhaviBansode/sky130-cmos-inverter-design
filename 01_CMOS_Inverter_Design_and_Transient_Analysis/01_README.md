@@ -34,6 +34,17 @@ The CMOS inverter was implemented by selecting one PMOS and one NMOS transistor 
 <img src="cmos_pt1_selecting_labpins.png" width="70%">
 </p>
 
+
+---
+
+### Step 3: Simulation Configuration
+
+A pulse voltage source was connected to the input of the inverter to generate alternating logic levels. A transient analysis command was added to the schematic to observe the output response over time.
+
+<p align="center">
+<img src="cmos_pt1_codeshown.png" width="75%">
+</p>
+
 #### Completed CMOS Inverter Schematic
 
 <p align="center">
@@ -49,15 +60,6 @@ The completed schematic includes:
 - Power supply (VDD)
 - Ground (GND)
 
----
-
-### Step 3: Simulation Configuration
-
-A pulse voltage source was connected to the input of the inverter to generate alternating logic levels. A transient analysis command was added to the schematic to observe the output response over time.
-
-<p align="center">
-<img src="cmos_pt1_codeshown.png" width="75%">
-</p>
 
 ---
 

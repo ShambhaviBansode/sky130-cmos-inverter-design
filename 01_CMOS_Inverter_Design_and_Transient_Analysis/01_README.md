@@ -69,7 +69,7 @@ The completed schematic includes:
 After verifying the schematic connections, Xschem generated the SPICE netlist required for simulation. The generated netlist contains the circuit connectivity, transistor models, voltage sources, and simulation commands used by NgSpice.
 
 <p align="center">
-![](screenshots/cmos_pt1_nelist.png)
+<img src="screenshots/cmos_pt1_nelist.png" width="85%">
 </p>
 
 ---
@@ -79,7 +79,7 @@ After verifying the schematic connections, Xschem generated the SPICE netlist re
 The generated netlist was simulated using NgSpice. The simulator successfully executed the transient analysis and produced the voltage waveforms for the input and output nodes.
 
 <p align="center">
-![](screenshots/cmos_pt1_plotting%20vin%20vout.png)
+<img src="screenshots/cmost_pt1_ngspice_simulation_window.png" width="80%">
 </p>
 
 ---
@@ -89,7 +89,7 @@ The generated netlist was simulated using NgSpice. The simulator successfully ex
 The transient response of the CMOS inverter was plotted by displaying **VIN** and **VOUT** on the same graph.
 
 <p align="center">
-![](screenshots/cmost_pt1_ngspice_simulation_window.png)
+<img src="screenshots/cmos_pt1_plotting%20vin%20vout.png" width="90%">
 </p>
 
 The waveform demonstrates the expected operation of the CMOS inverter:

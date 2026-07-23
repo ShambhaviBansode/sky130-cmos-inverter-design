@@ -1,15 +1,17 @@
 # Screenshots
 
-This folder contains the screenshots used in the **05** module of the **Sky130 CMOS Inverter Design** project.
+This folder contains the screenshots used in **Part 05 – CMOS Inverter Propagation Delay Analysis** of the **Sky130 CMOS Inverter Design** project.
 
-The images document the complete workflow of the experiment, including:
+The screenshots document the complete workflow of transient delay analysis, including:
 
-- Circuit schematic and simulation setup
-- Netlist generation
-- NgSpice simulation window
-- Waveform plots and analysis
-- Measurement results
-- Intermediate design steps
-- Final output and observations
+- CMOS inverter schematic used for delay analysis
+- Editing the pulse input source (`source.sym`)
+- Updating the simulation code block for transient analysis
+- Generated SPICE netlist
+- Ubuntu terminal and Xterm used to launch the project
+- NgSpice transient simulation window
+- Input voltage (`VIN`) waveform
+- Output voltage (`VOUT`) waveform
+- Measurement of propagation delay (`tPHL`) using NgSpice
 
-These screenshots are referenced throughout the main `README.md` of this module to provide a clear visual explanation of the design and simulation process.
+These images are referenced throughout the module's `README.md` to provide a step-by-step visual explanation of the propagation delay analysis performed using **Xschem**, **NgSpice**, and the **Sky130 Open-Source PDK**.

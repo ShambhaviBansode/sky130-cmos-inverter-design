@@ -1,4 +1,4 @@
-# 03 – 03_CMOS_Inverter_VTC_Analysi
+# 03 – 03_CMOS_Inverter_VTC_Analysis
 
 ## Objective
 

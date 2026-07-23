@@ -60,7 +60,7 @@ The DC sweep simulation was executed using NgSpice. The previously generated Vol
 
 **Simulation Window**
 
-<img src="screenshots/cmos_pt4_simulation_window2.png" width="700">
+<img src="screenshots/cmos_pt4_simlution_window2.png" width="700">
 
 </td>
 </tr>
@@ -90,7 +90,7 @@ The gain curve identifies the region where the magnitude of the voltage gain exc
 
 **Gain Curve**
 
-<img src="screenshots/cmos_pt4_gain_ciurve.png" width="650">
+<img src="screenshots/cmos_pt4_gain ciurve.png" width="650">
 
 </td>
 </tr>
@@ -143,7 +143,7 @@ A balanced pair of noise margins indicates good robustness of the CMOS inverter 
 
 **Upper and Lower Noise Margins**
 
-<img src="screenshots/cmos_pt4_gain_vout_combined.png" width="700">
+<img src="screenshots/cmos_pt4_upper_lower_side_noise_margin.png" width="700">
 
 </td>
 </tr>

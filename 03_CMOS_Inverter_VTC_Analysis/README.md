@@ -43,7 +43,7 @@ The completed schematic consists of:
 
 ## Step 2: Symbol Creation
 
-To enable hierarchical design, the CMOS inverter schematic was converted into a reusable symbol using the **Create Symbol** feature in Xschem. The generated symbol was then edited to provide a clean inverter representation with properly positioned input and output ports.
+To enable hierarchical design, the CMOS inverter schematic was converted into a reusable symbol using the **Create Symbol** (ctrl+a)feature in Xschem. The generated symbol was then edited to provide a clean inverter representation with properly positioned input and output ports.
 
 #### Symbol Generated from the Schematic
 

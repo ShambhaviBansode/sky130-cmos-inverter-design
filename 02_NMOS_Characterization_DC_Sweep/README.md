@@ -40,13 +40,6 @@ A test circuit was created by placing a single NMOS transistor from the Sky130 d
 <img src="screenshots/cmos_pt2_selecting_labpins.png" width="55%">
 </p>
 
-#### Completed NMOS Test Schematic
-
-After placing the transistor, voltage sources, and lab pins, the complete NMOS characterization circuit was prepared for simulation.
-
-<p align="center">
-<img src="screenshots/cmos_pt2_schematic.png" width="85%">
-</p>
 
 ---
 
@@ -67,6 +60,15 @@ The simulation setup includes:
 - DC sweep command
 - Save statements
 - End statement
+
+#### Completed NMOS Test Schematic
+
+After placing the transistor, voltage sources, and lab pins, the complete NMOS characterization circuit was prepared for simulation.
+
+<p align="center">
+<img src="screenshots/cmos_pt2_schematic.png" width="85%">
+</p>
+
 
 ---
 

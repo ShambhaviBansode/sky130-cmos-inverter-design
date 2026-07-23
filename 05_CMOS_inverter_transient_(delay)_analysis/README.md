@@ -1,269 +1,85 @@
-# 05 – CMOS Inverter Transient (Delay) Analysis
+## Step 6: Noise Margin Calculation
 
-## Objective
+The values of **VIL** and **VIH** were obtained from the gain curve by identifying the points where the magnitude of the voltage gain became equal to one (|Gain| = 1). NgSpice was used to measure these values directly from the DC simulation.
 
-The objective of this experiment is to analyze the **dynamic switching behavior** of a CMOS inverter using **Transient Analysis** in Xschem and NGSPICE. Unlike DC analysis, which studies the steady-state characteristics of the inverter, transient analysis evaluates how the output responds to a time-varying input signal.
+The following commands were used:
 
-The experiment also measures the **Propagation Delay (tPHL)** of the inverter by determining the time difference between the 50% transition points of the input and output waveforms.
+```spice
+plot derive(v(vout))
 
----
+let gain = abs(derive(v(vout)))
 
-## Theory
+plot gain
 
-A CMOS inverter does not switch instantaneously due to the presence of parasitic and load capacitances. When the input changes, the output capacitor must either charge through the PMOS transistor or discharge through the NMOS transistor.
+meas dc Vil when gain=1 cross=1
 
-This charging and discharging process introduces a finite delay known as the **Propagation Delay**.
+meas dc Vih when gain=1 cross=2
+```
 
-For an inverter:
+The simulation produced the following results:
 
-- **tPHL** – Propagation delay when the output transitions from **High to Low**.
-- **tPLH** – Propagation delay when the output transitions from **Low to High**.
+| Parameter | Value |
+|-----------|-------|
+| **VIL** | **0.705556 V** |
+| **VIH** | **0.940444 V** |
+| **VOL** | **0 V** |
+| **VOH** | **1.8 V** |
 
-Propagation delay is measured between the **50% voltage levels** of the input and output waveforms.
+Using these values, the noise margins were calculated as:
 
-For a supply voltage of **1.8 V**,
+### Low Noise Margin (NML)
 
 \[
-V_{50\%}=0.5\times1.8=0.9\;V
-\]
-
-Therefore,
-
-\[
-t_{PHL}=t_{OUT(50\%)}-t_{IN(50\%)}
-\]
-
----
-
-## Circuit Schematic
-
-The CMOS inverter schematic consists of:
-
-- PMOS transistor connected to VDD
-- NMOS transistor connected to Ground
-- Pulse voltage source as input
-- Output node connected to both transistors
-
-Insert the schematic screenshot below.
-
-> **Screenshot:** `cmos_pt5_schematic.png`
-
----
-
-## Editing the Input Source
-
-To perform transient analysis, the DC input source is replaced with a **Pulse Voltage Source**.
-
-The pulse source used is:
-
-```spice
-pulse(0 1.8 1ns 1ns 5ns 10ns)
-```
-
-where
-
-- Initial Voltage = **0 V**
-- Final Voltage = **1.8 V**
-- Delay Time = **1 ns**
-- Rise Time = **1 ns**
-- Pulse Width = **5 ns**
-- Time Period = **10 ns**
-
-> **Screenshot:** `cmos_pt5_editing_source_sym_vin.png`
-
----
-
-## Editing the Simulation Code
-
-The simulation command is changed from DC analysis to **Transient Analysis**.
-
-Example:
-
-```spice
-.tran 0.02n 10n
-```
-
-where
-
-- Time Step = **0.02 ns**
-- Stop Time = **10 ns**
-
-> **Screenshot:** `cmos_pt5_editing_code_shown_block.png`
-
----
-
-## Generated Netlist
-
-After saving the schematic, Xschem automatically generates the SPICE netlist used by NGSPICE.
-
-The generated netlist contains:
-
-- MOSFET definitions
-- Power supply
-- Pulse input source
-- Model library
-- Transient simulation command
-
-> **Screenshot:** `cmos_pt5_edited_netlist.png`
-
----
-
-## Running the Simulation
-
-After generating the netlist, launch NGSPICE and execute the transient simulation.
-
-```
-ngspice inv_test2.spice
-```
-
-The simulator computes the node voltages for each time step and stores the transient waveform data.
-
-> **Screenshot:** `cmos_pt5_simulation_window.png`
-
----
-
-## Selecting the Transient Plot
-
-Since multiple analyses may exist, first list the available plots.
-
-```spice
-setplot
-```
-
-Output:
-
-```
-List of plots available:
-
-Current tran1
-Analysis transient
-```
-
-Switch to the transient plot.
-
-```spice
-setplot tran1
-```
-
----
-
-## Plotting the Input and Output Waveforms
-
-The input and output waveforms are plotted together using
-
-```spice
-plot vin vout
-```
-
-This graph shows the delay between the input transition and the output transition.
-
-> **Screenshot:** `cmos_pt5_plotting_vin_vout.png`
-
----
-
-## Measuring the 50% Input Crossing
-
-The input reaches 50% of the supply voltage at
-
-```spice
-meas tran vin50 when vin=0.9 RISE=2
-```
-
-Measured value:
-
-```
-vin50 = 6.75000e-09 s
-```
-
----
-
-## Measuring the 50% Output Crossing
-
-The output reaches 50% of the supply voltage at
-
-```spice
-meas tran vout50 when vout=.9 FALL=2
-```
-
-Measured value:
-
-```
-vout50 = 6.77488e-09 s
-```
-
----
-
-## Calculating the Propagation Delay
-
-Propagation delay is calculated as
-
-\[
-t_{PHL}=t_{OUT(50\%)}-t_{IN(50\%)}
-\]
-
-Using the measured values,
-
-\[
-t_{PHL}
-=
-6.77488\times10^{-9}
--
-6.75000\times10^{-9}
+NML = VIL - VOL
 \]
 
 \[
-t_{PHL}=2.4882\times10^{-11}\;s
+NML = 0.705556 - 0
 \]
-
-which is
 
 \[
-\boxed{t_{PHL}=24.882\;ps}
+\boxed{NML = 0.705556\ V}
 \]
 
-The calculation can also be performed directly in NGSPICE using
+### High Noise Margin (NMH)
 
-```spice
-let tphl=vout50-vin50
-```
+\[
+NMH = VOH - VIH
+\]
 
-Print the result
+\[
+NMH = 1.8 - 0.940444
+\]
 
-```spice
-print tphl
-```
+\[
+\boxed{NMH = 0.859556\ V}
+\]
 
-Output
+The calculated values indicate that the CMOS inverter has good immunity against input noise, with both logic HIGH and logic LOW regions providing adequate noise margins.
 
-```
-tphl = 2.488200e-11
-```
-
-> **Screenshot:** `cmos_pt5_simulation_window.png`
-
----
-
-## Observation
-
-- The output does not switch instantaneously after the input transition.
-- The delay occurs because the load capacitance requires finite time to charge and discharge through the PMOS and NMOS transistors.
-- The measured High-to-Low propagation delay is approximately **24.882 ps**.
-- The transient waveform confirms the expected switching behavior of the CMOS inverter.
+<p align="center">
+<img src="screenshots/pt4_simulation_window2.png" width="900">
+<br>
+<b>Figure 6.</b> NgSpice window showing the measured values of VIL and VIH used for noise margin calculation.
+</p>
 
 ---
 
-## Conclusion
+# Observation
 
-Transient analysis was successfully performed using **Xschem** and **NGSPICE**. The input pulse signal was applied to the CMOS inverter, and the corresponding output waveform was observed. The propagation delay was measured using the 50% voltage crossing method.
+- The Voltage Transfer Characteristic (VTC) obtained in **Part 03** was reused for the analysis.
+- The gain curve was generated by differentiating the VTC using the `derive()` function in NgSpice.
+- The critical switching voltages were obtained as:
+  - **VIL = 0.705556 V**
+  - **VIH = 0.940444 V**
+- Using **VOL = 0 V** and **VOH = 1.8 V**, the calculated noise margins are:
+  - **NML = 0.705556 V**
+  - **NMH = 0.859556 V**
+- The gain exceeds unity only within the switching region of the inverter, while outside this region the gain remains below one.
+- The obtained noise margins indicate reliable switching behavior and good immunity against external noise.
 
-### Final Results
+---
 
-| Parameter | Measured Value |
-|-----------|---------------:|
-| Supply Voltage | **1.8 V** |
-| 50% Voltage Level | **0.9 V** |
-| Input 50% Crossing Time | **6.75000 ns** |
-| Output 50% Crossing Time | **6.77488 ns** |
-| Propagation Delay (tPHL) | **24.882 ps** |
+# Conclusion
 
-The measured delay demonstrates the finite switching speed of the CMOS inverter and validates its transient performance.
+This experiment extends the Voltage Transfer Characteristic (VTC) analysis performed in **Part 03** by evaluating the noise margins of the CMOS inverter. The gain curve was analyzed to determine the critical switching voltages (**VIL** and **VIH**), and the corresponding **Low Noise Margin (NML = 0.705556 V)** and **High Noise Margin (NMH = 0.859556 V)** were calculated. These results confirm that the designed CMOS inverter provides stable logic operation with adequate tolerance to noise, making it suitable for reliable digital circuit applications.

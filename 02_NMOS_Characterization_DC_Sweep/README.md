@@ -87,7 +87,7 @@ After verifying all circuit connections, the SPICE netlist was generated success
 The generated netlist was simulated using NgSpice. The simulator successfully executed the DC sweep analysis for different values of **VGS** and **VDS**.
 
 <p align="center">
-<img src="screenshots/cmos_pt2_simulation_window_for_varing_vgs.png" width="80%">
+<img src="screenshots/cmos_pt2_simulation_windo_for_varing_vgs.png" width="80%">
 </p>
 
 ---

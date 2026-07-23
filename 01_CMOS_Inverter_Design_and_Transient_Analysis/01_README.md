@@ -37,7 +37,7 @@ The CMOS inverter was implemented by selecting one PMOS and one NMOS transistor 
 #### Completed CMOS Inverter Schematic
 
 <p align="center">
-<img src="cmos_pt1_codeshown.png" width="85%">
+<img src="cmos_pt1_schematic.png" width="85%">
 </p>
 
 The completed schematic includes:
@@ -56,7 +56,7 @@ The completed schematic includes:
 A pulse voltage source was connected to the input of the inverter to generate alternating logic levels. A transient analysis command was added to the schematic to observe the output response over time.
 
 <p align="center">
-<img src="cmos_pt1_choosing_source.png" width="75%">
+<img src="cmos_pt1_codeshown.png" width="75%">
 </p>
 
 ---

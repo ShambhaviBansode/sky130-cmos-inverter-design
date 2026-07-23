@@ -60,7 +60,7 @@ PULSE(0 1.8 0 0.3n 0.3n 2.6n 6n)
 ```
 
 <p align="center">
-<img src="screenshots/cmos_pt5_editing_source_sym_vin.png" width="700">
+<img src="screenshots/cmos_pt5_editing_vsource.sym_vin.png" width="700">
 <br>
 <b>Figure 3.</b> Editing the input source to generate a pulse waveform.
 </p>

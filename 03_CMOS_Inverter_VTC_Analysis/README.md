@@ -43,7 +43,7 @@ The completed schematic consists of:
 
 ## Step 2: Symbol Creation
 
-To enable hierarchical design, the CMOS inverter schematic was converted into a reusable symbol using the **Create Symbol** (ctrl+a)feature in Xschem. The generated symbol was then edited to provide a clean inverter representation with properly positioned input and output ports.
+To enable hierarchical design, the CMOS inverter schematic was converted into a reusable symbol using the Create Symbol **(ctrl+a)** feature in Xschem. The generated symbol was then edited to provide a clean inverter representation with properly positioned input and output ports.
 
 #### Symbol Generated from the Schematic
 
@@ -83,7 +83,7 @@ The DC sweep was configured to vary the input voltage from **0 V** to **1.8 V**,
 After verifying all circuit connections, Xschem generated the SPICE netlist required by NgSpice. The generated netlist contains the inverter instance, voltage sources, transistor models, and simulation commands necessary for performing the DC analysis.
 
 <p align="center">
-<img src="screenshots/cmos_pt3_netlist_(2).png" width="750">
+<img src="screenshots/cmos_pt3_netlist.png" width="750">
 </p>
 
 ---

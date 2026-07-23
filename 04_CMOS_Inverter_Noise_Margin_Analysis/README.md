@@ -209,8 +209,4 @@ The calculated values indicate that the CMOS inverter has good immunity against 
 
 This experiment extends the Voltage Transfer Characteristic (VTC) analysis performed in **Part 03** by evaluating the noise margins of the CMOS inverter. The gain curve was analyzed to determine the critical switching voltages (**VIL** and **VIH**), and the corresponding **Low Noise Margin (NML = 0.705556 V)** and **High Noise Margin (NMH = 0.859556 V)** were calculated. These results confirm that the designed CMOS inverter provides stable logic operation with adequate tolerance to noise, making it suitable for reliable digital circuit applications.
 
----
 
-# Conclusion
-
-This experiment extends the Voltage Transfer Characteristic (VTC) analysis performed in **Part 03** by evaluating the noise margins of the CMOS inverter. The gain curve was analyzed to determine the critical switching voltages (**VIL** and **VIH**), and the corresponding **Low Noise Margin (NML)** and **High Noise Margin (NMH)** were calculated. These parameters are essential for assessing the reliability and robustness of CMOS digital circuits and form an important step in the complete CMOS inverter characterization workflow.
